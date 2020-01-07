@@ -2,7 +2,7 @@
     "name": "boyo/mobica",
     "description": "Laravel notifications with Mobica Bulgaria",
     "keywords": ["laravel", "notifications", "sms", "mobica"],
-    "homepage": "https://github.com/boyanraichev/laravel-mobica",
+    "homepage": "https://github.com/boyanraichev/mobica",
     "authors": [
         {
             "name": "Boyan Raichev",
