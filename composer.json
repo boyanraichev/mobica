@@ -1,0 +1,36 @@
+{
+    "name": "boyo/mobica",
+    "description": "Laravel notifications with Mobica Bulgaria",
+    "keywords": ["laravel", "notifications", "sms", "mobica"],
+    "homepage": "https://github.com/boyanraichev/laravel-mobica",
+    "authors": [
+        {
+            "name": "Boyan Raichev",
+            "email": "myself@boyanr.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": ">=5.5",
+        "guzzlehttp/guzzle": "^6.3",
+        "boyo/bulglish": "*"
+    },
+    "autoload": {
+		"psr-4": {
+			"Boyo\\Mobica\\": "src/"
+    	}
+	},
+    "extra": {
+	    "laravel": {
+	        "providers": [
+	            "Boyo\\Mobica\\MobicaServiceProvider"
+	        ],
+	        "aliases": {
+		        "MobicaChannel": "Boyo\\Mobica\\MobicaChannel"
+	        }
+	    },
+        "branch-alias" : {
+            "dev-master" : "1.0-dev"
+        }
+    }
+}
