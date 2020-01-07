@@ -23,11 +23,11 @@ Add the following to your services config file.
 ],
 ```
 
-*log* - if the messages should be written to a log file
-*log_channel* - the log channel to log messages to
-*send* - if the messages should be sent (production/dev environment)
-*bulglish* - if cyrillic text should be converted to latin letters for SMS messages (cyrillic uses more characters in SMS messages)
-*allow_multiple* - if SMS messages above 160 characters should be allowed
+- **log** if the messages should be written to a log file
+- *log_channel* the log channel to log messages to
+- *send* if the messages should be sent (production/dev environment)
+- *bulglish* if cyrillic text should be converted to latin letters for SMS messages (cyrillic uses more characters in SMS messages)
+- *allow_multiple* if SMS messages above 160 characters should be allowed
 
 ## Send test
 
@@ -50,7 +50,7 @@ class MyMessage extends MobicaMessage
 
 2. In your Notification class you can now include the Mobica channel in the `$via` array returned by the `via()` method.
 
-```
+```php
 use Boyo\Mobica\MobicaChannel;
 
 via($notifiable) 
@@ -67,7 +67,7 @@ via($notifiable)
 
 Within the same Notification class you should also define a method `toMobica()`:
 
-```
+```php
 public function toMobica($notifiable)
 {
 	return (new MyMessage())->to($notifiable->phone)->channel('viber');
@@ -75,7 +75,10 @@ public function toMobica($notifiable)
 ```
 
 The channel method is where you define the delivery channel you wish to use. 
-*sms* - delivery by sms only (this is the default value, if you omit the channel method)
-*viber* - delivery by viber only
-*viber-sms* - delivery attempted by viber, if not successful delivery by sms
+
+**sms** - delivery by sms only (this is the default value, if you omit the channel method)
+
+**viber** - delivery by viber only
+
+**viber-sms** - delivery attempted by viber, if not successful delivery by sms
 
