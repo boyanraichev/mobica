@@ -35,7 +35,8 @@ class MobicaChannel
 	        throw new \Exception('No message provided');
 	    }
 	    
-	    $message->build();
+	    // run the build functions
+	    $message->sms()->viber();
 	    
         $this->client->send($message);
         
