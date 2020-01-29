@@ -43,6 +43,14 @@ class MobicaSender
 		
 	}
 	
+	public function setSend(bool $send) {
+		
+		$this->send = $send;
+		
+		return $this;
+		
+	}
+	
 	// send email
 	public function send(MobicaMessage $message) {
 		

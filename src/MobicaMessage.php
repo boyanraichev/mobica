@@ -100,7 +100,7 @@ class MobicaMessage
 		}
 		
 		$json = [
-			'phones' = [ $this->to ],
+			'phone' => [ $this->to ],
 		];
 
 	    switch($this->channel) {
@@ -129,6 +129,13 @@ class MobicaMessage
 			    	'is_promotional' => $this->is_promotional,
 		    	];
 		    	
+			    if ($this->channel == 'viber-sms') {
+				    
+				    $sms_message_processed = $this->getSmsText();
+				    
+				    $json['viber']['sms_text'] = $sms_message_processed;
+				    
+			    }
 /*
 				"image_url":"< valid image url >",
 				"button_url":"https://mobica.bg",
@@ -138,13 +145,6 @@ class MobicaMessage
 				break;
 	    }
 	    
-	    if ($this->channel == 'viber-sms') {
-		    
-		    $sms_message_processed = $this->getSmsText();
-		    
-		    $json['viber']['sms_text'] = $sms_message_processed;
-		    
-	    }
 	    
 	    return $json;
 	    
