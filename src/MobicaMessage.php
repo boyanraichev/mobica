@@ -110,7 +110,7 @@ class MobicaMessage
 				
 		    	$json['sms'] = [
 			    	'idd' => $this->id,
-			    	'text' => $sms_message_processed,
+			    	'message' => $sms_message_processed,
 			    	//'from' => '',
 		    	];
 		    	
@@ -124,7 +124,7 @@ class MobicaMessage
 				
 				$json['viber'] = [
 			    	'idd' => $this->id,
-			    	'message' => $this->messageViber,
+			    	'text' => $this->messageViber,
 			    	'validity_period_sec' => $this->validity_period_sec,
 			    	'is_promotional' => $this->is_promotional,
 		    	];
