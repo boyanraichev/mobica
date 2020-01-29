@@ -1,5 +1,5 @@
 <?php
-namespace Boyo\Voicecom;
+namespace Boyo\Mobica;
 
 use Illuminate\Support\ServiceProvider;
 
