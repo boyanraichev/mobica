@@ -44,7 +44,8 @@ class Test extends Command
 		    
 		    $content = $this->option('message');
 		    
-		    $message = new MobicaMessage(time())->to($phone)->sms($content)->viber($content);
+		    $message = new MobicaMessage(time());
+		    $message->to($phone)->sms($content)->viber($content);
 		    
 		    if (!empty($channel)) {
 			    $message->channel($channel);
