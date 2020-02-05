@@ -74,7 +74,7 @@ class MobicaMessage
     /**
      * @param  string $id
      */
-    public function __construct($id)
+    public function __construct($id='')
     {
         $this->id = $id;
     }

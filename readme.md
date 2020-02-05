@@ -35,9 +35,29 @@ To send a test message use the following artisan command:
 
 `php artisan mobica:test phone --message='content' --channel=sms`
 
-## Usage
+## Direct usage
 
-1. Create a message file that extends `Boyo\Mobica\MobicaMessage`. It can take whatever data you need in the construct and should implement a `sms()` method and a `viber()` method that create the messages texts - a good practice would be to render a view file, so that your message content is in your views. You should only define the methods for the delivery channels that your are going to use. 
+You can instantiate a `Boyo\Mobica\MobicaMessage` object and send it immediately.
+
+```php
+use Boyo\Mobica\MobicaMessage;
+use Boyo\Mobica\MobicaSender;
+
+class MyClass
+{
+	public function myFunction()
+	{
+		$message = (new MobicaMessage())->to('359888888888')->channel('viber-sms')->sms('SMS text')->viber('Viber text');
+		
+		$client = new MobicaSender();
+		$client->send($message);	
+	}
+}
+```
+
+## Usage with notifications
+
+1. Create a message file that extends `Boyo\Mobica\MobicaMessage`. It can take whatever data you need in the construct and should implement a `vuild()` method that defines the messages text content - a good practice would be to render a view file, so that your message content is in your views. You should only define the methods for the delivery channels that your are going to use. 
 
 ```php
 use Boyo\Mobica\MobicaMessage;
@@ -49,12 +69,14 @@ class MyMessage extends MobicaMessage
         $this->id = $data->id; // your unique message id, add other parameters if needed
     }
     
-	public function sms() {
-		// set your sms text to $this->messageSMS in this method
-	}
+	public function build() {
+		// set your sms text 
+		$this->sms('SMS text');
 	
-	public function viber() {
-		// set your viber text to $this->messageViber in this method
+		// set your viber text
+		$this->viber('Viber text');
+		
+		return $this;
 	}	
 }
 ```
@@ -81,7 +103,7 @@ Within the same Notification class you should also define a method `toMobica()`:
 ```php
 public function toMobica($notifiable)
 {
-	return (new MyMessage($unique_id))->to($notifiable->phone)->channel('viber');
+	return (new MyMessage($unique_id))->to($notifiable->phone)->channel('viber-sms');
 }
 ```
 

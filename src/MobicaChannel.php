@@ -36,7 +36,7 @@ class MobicaChannel
 	    }
 	    
 	    // run the build functions
-	    $message->sms()->viber();
+	    $message->build();
 	    
         $this->client->send($message);
         
