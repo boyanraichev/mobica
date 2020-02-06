@@ -91,7 +91,7 @@ class MobicaMessage
 	    
 		$this->limitLength = empty(config('services.mobica.allow_multiple'));
 		
-		if (!$this->prefix) {
+		if ($this->prefix===false) {
 			$this->prefix = config('services.mobica.prefix');
 		}
 	    	    
