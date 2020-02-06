@@ -53,7 +53,7 @@ class Test extends Command
 		    
 		    $client = new MobicaSender();
 		    
-		    $client->setSend(true)->send($message);
+		    $client->forceSend($message);
 		    
 	        $this->info('Message send');
 			

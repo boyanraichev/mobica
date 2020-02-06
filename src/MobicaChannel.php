@@ -14,9 +14,9 @@ class MobicaChannel
     /**
      * @param ClickatellClient $clickatell
      */
-    public function __construct(MobicaSender $sender)
+    public function __construct()
     {
-        $this->client = $sender;
+
     }
     
     /**
@@ -38,7 +38,9 @@ class MobicaChannel
 	    // run the build functions
 	    $message->build();
 	    
-        $this->client->send($message);
+        $client = new MobicaSender();
+        
+        $client->send($message);
         
     }
     
