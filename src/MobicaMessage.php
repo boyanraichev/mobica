@@ -162,7 +162,7 @@ class MobicaMessage
                     $json['viber']['image_url'] = $this->imageViber;
                 }
                 
-                if (!empty($this->button_url)) {
+                if (!empty($this->buttonViber)) {
                     $json['viber']['button_url'] = $this->buttonViber;
                     $json['viber']['button_text'] = $this->buttonTextViber;
                 }
@@ -181,7 +181,7 @@ class MobicaMessage
      *
      * @return $this
      */
-    public function sms($text = '') {
+    public function sms(string $text = '') {
 	    
 	    $this->messageSMS = $text;
 	    
@@ -195,9 +195,18 @@ class MobicaMessage
      *
      * @return $this
      */
-    public function viber($text = '') {
+    public function viber(string $text = '', ?string $image = false, ?string $button = false, string $button_text = '',) {
 	    
 	    $this->messageViber = $text;
+        
+        if ($image) {
+            $this->imageViber = $image;
+        }
+        
+        if ($button) {
+            $this->buttonViber = $button;
+            $this->buttonTextViber = $button_text;
+        }
 	    
 	    return $this;
 	    

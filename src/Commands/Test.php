@@ -12,7 +12,7 @@ class Test extends Command
      *
      * @var string
      */
-    protected $signature = 'mobica:test {phone : Phone to send to} {--channel=sms} {--message=test}';
+    protected $signature = 'mobica:test {phone : Phone to send to} {--channel=sms} {--message=test} {--promo}';
     /**
      * The console command description.
      *
@@ -43,9 +43,17 @@ class Test extends Command
 		    $channel = $this->option('channel');
 		    
 		    $content = $this->option('message');
+            
+            $promo = $this->option('promo');
 		    
 		    $message = new MobicaMessage(time());
-		    $message->to($phone)->sms($content)->viber($content);
+		    $message->to($phone)->sms($content);
+            
+            if ($promo) {
+                $message->viber($content, 'https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg', 'https://www.wikipedia.org', 'Wikipedia');   
+            } else {
+                $message->viber($content);
+            }
 		    
 		    if (!empty($channel)) {
 			    $message->channel($channel);
