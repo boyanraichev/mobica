@@ -43,9 +43,11 @@ class MobicaSender
 		
 	}
 	
-	public function setSend(bool $send) {
+	public function forceSend(MobicaMessage $message) {
 		
-		$this->send = $send;
+		$this->send = true;
+		
+		$this->send($message);
 		
 		return $this;
 		

@@ -110,9 +110,9 @@ class MobicaMessage
 	    
 	    $this->bulglish = !empty(config('services.mobica.bulglish'));
 	    
-		$this->limitLength = !empty(config('services.mobica.allow_multiple'));
+		$this->limitLength = empty(config('services.mobica.allow_multiple'));
 		
-		if (!$this->prefix) {
+		if ($this->prefix===false) {
 			$this->prefix = config('services.mobica.prefix');
 		}
 	    	    
@@ -256,7 +256,7 @@ class MobicaMessage
 		}
 		
 		if ($this->limitLength) {
-			$sms_message_processed = $this->cutText($sms_message_processed);
+			$sms_message_processed = $this->cutText( $sms_message_processed );
 		}
 
 		return $sms_message_processed;
@@ -274,7 +274,7 @@ class MobicaMessage
 	        
 		if (mb_strlen($text) > 160) {
 		
-			$text = mb_substr($text, 0, 157);
+			$text = mb_substr($text, 0, 156);
 			$text .= '...';    
 			
 		}
