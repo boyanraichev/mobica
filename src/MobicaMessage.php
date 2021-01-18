@@ -195,7 +195,7 @@ class MobicaMessage
      *
      * @return $this
      */
-    public function viber(string $text = '', ?string $image = false, ?string $button = false, string $button_text = '',) {
+    public function viber(string $text = '', ?string $image = false, ?string $button = false, string $button_text = '') {
 	    
 	    $this->messageViber = $text;
         
