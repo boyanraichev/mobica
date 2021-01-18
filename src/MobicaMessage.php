@@ -44,6 +44,27 @@ class MobicaMessage
     public $messageViber = '';
     
     /**
+     * The image content for Viber.
+     *
+     * @var string
+     */
+    public $imageViber = '';
+    
+    /**
+     * The button url for Viber.
+     *
+     * @var string
+     */
+    public $buttonViber = '';
+    
+    /**
+     * The button text for Viber.
+     *
+     * @var string
+     */
+    public $buttonTextViber = '';
+    
+    /**
      * The message unique id
      *
      * @var string
@@ -136,12 +157,16 @@ class MobicaMessage
 				    $json['viber']['sms_text'] = $sms_message_processed;
 				    
 			    }
-/*
-				"image_url":"< valid image url >",
-				"button_url":"https://mobica.bg",
-				"button_text":"click me",
-*/
-				
+                
+                if (!empty($this->imageViber)) {
+                    $json['viber']['image_url'] = $this->imageViber;
+                }
+                
+                if (!empty($this->button_url)) {
+                    $json['viber']['button_url'] = $this->buttonViber;
+                    $json['viber']['button_text'] = $this->buttonTextViber;
+                }
+                
 				break;
 	    }
 	    
