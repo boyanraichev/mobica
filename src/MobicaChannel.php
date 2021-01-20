@@ -29,7 +29,7 @@ class MobicaChannel
     public function send($notifiable, Notification $notification)
     {
         
-        $message = $notification->toMobica($notifiable);
+        $message = $notification->toSms($notifiable);
         
         if (!$message instanceof MobicaMessage) {
 	        throw new \Exception('No message provided');

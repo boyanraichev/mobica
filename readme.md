@@ -33,7 +33,10 @@ Add the following to your services config file.
 
 To send a test message use the following artisan command:
 
-`php artisan mobica:test phone --message='content' --channel=sms`
+`php artisan mobica:test phone --message='content' --channel=sms --promo`
+
+- channel can have the following values: sms|viber|viber-sms
+- promo will send a promo test message with image and button
 
 ## Direct usage
 
@@ -57,7 +60,7 @@ class MyClass
 
 ## Usage with notifications
 
-1. Create a message file that extends `Boyo\Mobica\MobicaMessage`. It can take whatever data you need in the construct and should implement a `vuild()` method that defines the messages text content - a good practice would be to render a view file, so that your message content is in your views. You should only define the methods for the delivery channels that your are going to use. 
+1. Create a message file that extends `Boyo\Mobica\MobicaMessage`. It can take whatever data you need in the construct and should implement a `build()` method that defines the messages text content - a good practice would be to render a view file, so that your message content is in your views. You should only define the methods for the delivery channels that your are going to use. 
 
 ```php
 use Boyo\Mobica\MobicaMessage;
@@ -98,10 +101,10 @@ via($notifiable)
 }
 ```
 
-Within the same Notification class you should also define a method `toMobica()`:
+Within the same Notification class you should also define a method `toSms()`:
 
 ```php
-public function toMobica($notifiable)
+public function toSms($notifiable)
 {
 	return (new MyMessage($unique_id))->to($notifiable->phone)->channel('viber-sms');
 }
