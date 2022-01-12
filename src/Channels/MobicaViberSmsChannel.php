@@ -1,19 +1,19 @@
 <?php
 
-namespace Boyo\Mobica;
+namespace Boyo\Mobica\Channels;
 
 use Illuminate\Notifications\Notification;
 use Boyo\Mobica\MobicaSender;
 use Boyo\Mobica\MobicaMessage;
 
-class MobicaChannel
+class MobicaViberSmsChannel
 {
 	
     protected $client;
     
     public function __construct()
     {
-
+        
     }
     
     /**
@@ -31,6 +31,9 @@ class MobicaChannel
 	    // run the build functions
 	    $message->build();
 	    
+        // force viber-SMS sending on this channel 
+        $message->channel('viber-sms');
+        
         $client = new MobicaSender();
         
         $client->send($message);
